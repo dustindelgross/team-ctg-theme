@@ -8,6 +8,12 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
+
+
+if ( cb_is_user_site_admin() ) {
+}
+
+
 ?>
 <div class="cb-container active" id="cb-dashboard">
 	<div class="cb-module">
@@ -21,23 +27,108 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 
 	</div>
-
 	<div class="cb-module">
-		<div class="cb-log">
-			<h4 class="cb-heading">
-				Confetti Bits Log
-			</h4>
+		<h4 class="cb-heading">
+			Send Bits to Team Members
+		</h4>
+		<p class="cb-counter">
+			<?php 
+			if ( !cb_is_user_admin() || cb_is_user_site_admin() ) {
+				cb_transactions_transfer_balance_notice();
+			}
+			?>
+		</p>
+		<form class="cb-form" method="post" name="cb_transactions_send_bits_form" id="cb_transactions_send_bits_form" action="<?php echo  bp_get_canonical_url(); ?>" autocomplete="off">
+			<ul class="cb-form-page-section" id="cb-send-bits-data">
 
-			<?php cb_log(); ?>
+				<?php /* ?>
 
-		</div>
+				<li class="cb-form-line">
+					<label class="cb-form-label-top" for="cb_transactions_recipient_name">Team Member</label>
+					<input class="cb-form-textbox" 
+						   type="text" 
+						   name="cb_transactions_recipient_name" 
+						   id="cb_transactions_recipient_name" 
+						   readonly="true" 
+						   value="" 
+						   placeholder="Select a team member from the search panel" style="color:#9a9a9a;">
+				</li>
+				<?php }  else { */
+
+				cb_text_input(
+					array(
+						"label"			=> "Team Member",
+						"name"			=> "cb_transactions_recipient_name",
+						"placeholder"	=> "Search for a team member",
+					)
+				);
+
+				cb_toggle_switch(
+					array(
+						'name'		=> 'cb_transactions_add_activity',
+						'label'		=> "I want this to show up on the activity feed",
+					)
+				);
+
+				?>
+				<ul id="cb_transactions_member_search_results"></ul>
+				<?php  // } ?>
+
+				<li class="cb-form-line">
+					<input class="cb-form-textbox" 
+						   type="hidden" 
+						   name="cb_transactions_recipient_id" 
+						   id="cb_transactions_recipient_id" 
+						   value="" 
+						   placeholder="">
+				</li>
+
+				<?php 
+				
+				cb_templates_text_input(array(
+					'label' => "Log Entry",
+					'name' => "cb_transactions_log_entry",
+					'placeholder' => "Let them know what it's for!"
+				));
+
+				?>
+
+				<li class="cb-form-line">
+					<label class="cb-form-label-top" for="cb_transactions_amount" >Amount to Send</label>
+					<input class="cb-form-textbox" 
+						   type="number" 
+						   min="1" 
+						   max="20" 
+						   name="cb_transactions_amount" 
+						   id="cb_transactions_amount"  
+						   value="">
+				</li>
+
+				<li class="cb-form-line">
+					<input class="cb-submit" 
+						   type="submit"
+						   name="cb_transactions_send_bits"
+						   id="cb_transactions_send_bits"
+						   action="<?php echo  wp_nonce_url(bp_get_canonical_url(), 'cb-send-bits'); ?>" 
+						   value="Submit">
+				</li>
+			</ul>
+			<input type="hidden" 
+				   readonly="true" 
+				   name="cb_transactions_sender_id" 
+				   id="cb_transactions_sender_id" 
+				   value="<?php echo get_current_user_id(); ?>" />
+		</form>
+		<p class="cb-counter">
+			<?php cb_transactions_total_sent_today_notice(); ?>
+		</p>
+
 	</div>
 
 
 	<div class="cb-module">
-		<h4 class="cb-heading">
-			Export Log Entries
-		</h4>
+		
+		<?php cb_templates_heading("Export Log Entries"); ?>
 
 		<form enctype="multipart/form-data" id="export-download-form" method="post" >
 			<ul class="cb-form-page-section" id="cb-export-data">
@@ -77,9 +168,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	?>
 
 	<div class="cb-module">
-		<h4 class="cb-heading">
-			Send out a Sitewide Notice
-		</h4>
+		<?php cb_templates_heading("Send out a Sitewide Notice"); ?>
 		<form enctype="multipart/form-data" id="sitewide-notice-form" method="post" >
 			<?php
 		cb_text_input(
@@ -123,10 +212,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		$size       = size_format( $bytes );
 		$upload_dir = wp_upload_dir();
 
-		?>
-		<h4 class="cb-heading">
-			Import a List of Users
-		</h4>
+		cb_templates_heading("Import a List of Users"); ?>
 
 		<form enctype="multipart/form-data" id="import-upload-form" method="post" >
 			<ul class="cb-form-page-section" id="cb-import-data">
@@ -147,9 +233,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</div>
 	<div class="cb-module">
 
-		<h4 class="cb-heading">
-			Import Birthdays and Anniversaries
-		</h4>
+		<?php cb_templates_heading("Import Birthdays and Anniversaries"); ?>
 
 		<form enctype="multipart/form-data" id="cb-bda-import-form" method="post">
 			<ul class="cb-form-page-section">

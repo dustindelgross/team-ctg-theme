@@ -7,20 +7,37 @@
 /****************************** THEME SETUP ******************************/
 
 
-define ('TEAMCTG_THEME_VERSION', '2.2.2');
-//define ('THEME_HOOK_PREFIX', 'cb');
+define ('TEAMCTG_THEME_VERSION', '2.3.0');
 
-//require_once 'editor-permissions.php';
-
-function do_the_translations() {
-
-	load_theme_textdomain( 'buddyboss-theme', get_stylesheet_directory() . '/languages' );
-
+/**
+ * CB Hub Content
+ * 
+ * Filters the content for the Confetti Bits Hub page
+ * so that users can experience the awesome power of
+ * Confetti Bits.
+ * 
+ * @since Confetti_Bits 2.3.0
+ * @see cb_member_template_part()
+ * 
+ */
+function cb_hub_content() {
+	if ( is_page('confetti-bits') ) {
+		return cb_member_template_part();
+	}
 }
-add_action( 'after_setup_theme', 'do_the_translations' );
+add_filter( 'the_content', 'cb_hub_content' );
 
-
-function confettify_the_theme() {
+/**
+ * CB Theme Styles
+ * 
+ * Applies our styles to the theme.
+ * All scripts (except for maybe one or two) are going to be 
+ * loaded in the Confetti_Bits plugin.
+ * 
+ * @since Confetti_Bits 1.0.0
+ * 
+ */
+function cb_theme_styles() {
 
 	wp_enqueue_style( 
 		'cb-fonts',
@@ -50,16 +67,7 @@ function confettify_the_theme() {
 		TEAMCTG_THEME_VERSION 
 	);
 
-	wp_enqueue_script( 
-		'cb-js', 
-		get_stylesheet_directory_uri().
-		'/assets/js/cb-hub.js', 
-		'jquery,customize-preview', 
-		'null',
-		'all'
-	);
-
-	if ( cb_is_user_confetti_bits() && cb_is_user_participation_admin() ) {
+	if ( cb_is_confetti_bits_component() && cb_is_user_participation_admin() ) {
 		wp_enqueue_style( 
 			'cb-hub-admin-styles',
 			get_stylesheet_directory_uri().
@@ -68,6 +76,7 @@ function confettify_the_theme() {
 		);
 	}
 }
+add_action( 'cb_enqueue_scripts', 'cb_theme_styles', 999 );
 
 
 function confettify_the_login () {
@@ -88,16 +97,20 @@ function confettify_the_login () {
 	);
 
 }
-if ( is_page('confetti-bits' ) ) {
-	add_action( THEME_HOOK_PREFIX . '_template_parts_content_top', 'cb_has_moved_notification' );
-}
 
 
 //add_action( 'login_enqueue_scripts', 'confettify_the_login', 15 );
-add_action( 'wp_enqueue_scripts', 'confettify_the_theme', 999 );
+
 //add_action('wp_head', 'get_the_fonts');
 
 
+
+function cb_profile_nav_link() { ?>
+<li id="confetti-bits-personal-li" class="bp-personal-tab">
+	<a href="<?php echo bp_displayed_user_domain() . "confetti-bits"; ?>" id="user-confetti-bits">
+		<div class="bb-single-nav-item-point">Confetti Bits</div>
+	</a>
+</li><?php }
 
 function is_this_dustin() {
 	$current_person = get_current_user_id();
@@ -140,25 +153,6 @@ function tctg_smtp_init( $phpmailer ) {
 	$phpmailer->IsSMTP();
 
 }
-
-function cb_has_moved_notification() {
-
-
-	if (is_page('confetti-bits')) {
-		$link = bp_loggedin_user_domain() . cb_get_transactions_slug();
-?><div class="cb-module" ><h3 style="text-align:center;font-family:bree-serif;">
-	The Confetti Bits Hub has <a style="text-decoration:underline;" href="<?php echo $link; ?>">moved to the profile page.</a>
-	</h3>
-
-</div>
-<style>.entry-title {display:none;}</style>
-
-<?php
-	}
-
-}
-
-/*//*/
 
 add_filter( 'buddyboss_theme_redux_is_theme', '__return_true', 999 );
 
@@ -248,8 +242,8 @@ add_filter( 'redux/_url', 'buddyboss_theme_redux_url' );
 add_filter( 'style_loader_src', 'bb_fix_theme_option_for_custom_wp_installation' );
 add_filter( 'script_loader_src', 'bb_fix_theme_option_for_custom_wp_installation' );
 function bb_fix_theme_option_for_custom_wp_installation( $url ) {
-  if ( is_admin() ) {
-    $url = str_replace( 'plugins/bitnami/wordpress/wp-content/themes/buddyboss-theme/', 'themes/buddyboss-theme/', $url );
-  }
-  return $url;
+	if ( is_admin() ) {
+		$url = str_replace( 'plugins/bitnami/wordpress/wp-content/themes/buddyboss-theme/', 'themes/buddyboss-theme/', $url );
+	}
+	return $url;
 }

@@ -1,9 +1,15 @@
-<?php ?>
-	
+<?php 
+if ( cb_is_user_site_admin() ) {
+	echo cb_core_current_date();
+}
+?>
+
+<?php cb_transactions_balances_notice(); ?>
 <div class="cb-dashboard-header">
 	<div class="cb-hub-nav-toggle"></div>
 	<div class="cb-hub-nav-container">
 		<?php 
+
 		$templates = cb_get_active_templates();
 		if ( isset($templates['Dashboard Header'] ) ) {
 			unset($templates['Dashboard Header']);
@@ -22,8 +28,11 @@
 	</div>
 </div>
 <div class="cb-feedback">
-		<button class="cb-close"></button>
+	<button class="cb-close"></button>
 	<p class="cb-feedback-message"></p>
 </div>
 
-<?php cb_users_balances();
+<?php 
+if ( cb_is_user_site_admin() ) {
+
+}

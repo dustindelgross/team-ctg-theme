@@ -1,5 +1,3 @@
-
-
 .cb-participation-admin-nav {
 	list-style-type:none;
 	display: flex;
@@ -98,7 +96,7 @@ div.cb-participation-admin-panel {
 	margin: 0;
 }
 
-.cb-participation-pagination-container {
+.cb-participation-admin-pagination-container {
 	flex: 1 1 50%;
 	display:flex;
 	justify-content:center;
@@ -109,7 +107,7 @@ div.cb-participation-admin-panel {
 	margin: 30px auto;
 }
 
-.cb-participation-pagination {
+.cb-participation-admin-pagination {
 	width: 100%;
 	height: 15vh;
 	max-height: 40px;
@@ -122,7 +120,21 @@ div.cb-participation-admin-panel {
 	align-items: center;
 }
 
-.buddypress .buddypress-wrap button.cb-participation-pagination-button {
+#cb-participation-admin-transaction-history-pagination {
+	width: 100%;
+	height: 15vh;
+	max-height: 40px;
+	min-width: 200px;
+	max-width: 600px;
+	background-color: #d1cbc150;
+	border-radius: 40px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1rem;
+}
+
+button.cb-transactions-pagination-button {
 	display:flex;
 	width:40px;
 	height: 40px;
@@ -132,25 +144,61 @@ div.cb-participation-admin-panel {
 	position: relative;
 }
 
-.buddypress .buddypress-wrap button.cb-participation-pagination-button.active {
+button.cb-transactions-pagination-button.active {
 	background-color: #2a2a2a;
 	color: #dbb778;
 }
 
-.buddypress .buddypress-wrap button.cb-participation-pagination-button.disabled:hover {
+button.cb-transactions-pagination-button.disabled:hover {
 	cursor: not-allowed;
 	border-color: transparent;
 	color: #c8cbcf;
 	background-color: #f5f5f5;
 	pointer-events:none;
+
 }
 
-.buddypress .buddypress-wrap button.cb-participation-pagination-button:hover {
+button.cb-transactions-pagination-button.disabled, button.cb-participation-admin-pagination-button.disabled {
+	border-color: transparent;
+}
+
+button.cb-transactions-pagination-button:hover {
 	border-color:#2a2a2a;
 	color: #dbb778;
 }
 
-.buddypress button.cb-participation-admin-edit-button {
+
+
+button.cb-participation-admin-pagination-button {
+	display:flex;
+	width:40px;
+	height: 40px;
+	justify-content:center;
+	align-items: center;
+	padding: 0;
+	position: relative;
+}
+
+button.cb-participation-admin-pagination-button.active {
+	background-color: #2a2a2a;
+	color: #dbb778;
+}
+
+button.cb-participation-admin-pagination-button.disabled:hover {
+	cursor: not-allowed;
+	border-color: transparent;
+	color: #c8cbcf;
+	background-color: #f5f5f5;
+	pointer-events:none;
+	
+}
+
+button.cb-participation-admin-pagination-button:hover {
+	border-color:#2a2a2a;
+	color: #dbb778;
+}
+
+button.cb-participation-admin-edit-button {
 	width: 100%;
 	background-color: transparent;
 	border: 0;
@@ -158,7 +206,7 @@ div.cb-participation-admin-panel {
 	margin:0;
 }
 
-.buddypress button.cb-participation-admin-edit-button:hover {
+button.cb-participation-admin-edit-button:hover {
 	border: 0;
 	background-color: transparent;
 }
@@ -171,6 +219,16 @@ div.cb-participation-admin-panel {
 	height: 100%;
 }
 
+#cb-participation-admin-transaction-history-view {
+	width: 100%;
+	height: 100%;
+	padding:20px;
+	overflow-y: scroll;
+	scrollbar-width: 6px;
+	scrollbar-color: #d1cbc1 transparent;
+
+}
+
 #cb-participation-admin-edit-form-wrapper.active {
 	top: 50%;
 	left: 50%;
@@ -179,6 +237,7 @@ div.cb-participation-admin-panel {
 	transform: translate( -50%, -50% );
 	justify-content:center;
 	align-items:center;
+	flex-flow: row wrap;
 	z-index:991;
 }
 
@@ -204,12 +263,25 @@ div.cb-participation-admin-panel {
 	align-items: center;
 	width: 100%;
 	height: 100%;
-	max-width: 600px;
-	max-height:80dvh;
+	max-width: 1200px;
+	max-height:90dvh;
 	position:relative;
 	z-index: 992;
 	background-color: white;
 	border-radius: 10px;
+	flex-flow: row-reverse wrap;
+	overflow-y: scroll;
+	padding: 1.2rem;
+}
+
+#cb-participation-admin-edit-form-container div {
+	flex: 1 1 50%;
+}
+
+@media ( max-width: 768px ) {
+	#cb-participation-admin-edit-form-container div {
+		flex: 1 1 100%;
+	}
 }
 
 #cb-participation-admin-edit-form {
@@ -228,19 +300,19 @@ div.cb-participation-admin-panel {
 
 
 #cb-participation-admin-edit-form::-webkit-scrollbar {
-  width: 6px;
-	
+	width: 6px;
+
 }
 
 #cb-participation-admin-edit-form::-webkit-scrollbar-track {
-	
-  background: transparent;
+
+	background: transparent;
 }
 
 #cb-participation-admin-edit-form::-webkit-scrollbar-thumb {
-  background-color: #d1cbc1;    /* color of the scroll thumb */
-  border-radius: 20px;       /* roundness of the scroll thumb */
-  border: 3px solid #d1cbc1;  /* creates padding around scroll thumb */
+	background-color: #d1cbc1;    /* color of the scroll thumb */
+	border-radius: 20px;       /* roundness of the scroll thumb */
+	border: 3px solid #d1cbc1;  /* creates padding around scroll thumb */
 }
 
 .cb-participation-admin-edit-form-applicant-data {

@@ -405,7 +405,7 @@ ul.cb-form-page-section {
 	max-width:400px;
 }
 
-.cb-submit {
+.cb-submit, .cb-submit-input {
 
 	margin-top:20px;
 	width:100%;
@@ -415,7 +415,7 @@ ul.cb-form-page-section {
 
 }
 
-.cb-submit[disabled] {
+.cb-submit[disabled], .cb-submit-input[disabled] {
 	pointer-events:none;
 }
 
@@ -430,20 +430,21 @@ ul.cb-form-page-section {
 	color:#9a9a9a;
 }
 
-input[type=submit] {
+input[type=submit], .cb-submit, input[type=submit].cb-submit-input {
 	background-color:transparent;
 	color:#dbb778;
-	border:3px solid #dbb778;
+	border:1px solid #dbb778;
 	transition:.15s ease-in-out;
 	display:flex;
 	justify-content:center;
 	align-items:center;
 	padding-top:0;
 	padding-bottom:0;
+	margin-top: .5rem;
 }
 
-input[type=submit]:hover {
-	transform:scale(1.15);
+input[type=submit]:hover, .cb-submit:hover, input[type=submit].cb-submit-input:hover {
+	transform:scale(1.05);
 	background-color:#dbb778;
 	color:white;
 	box-shadow:none;

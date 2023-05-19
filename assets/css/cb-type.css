@@ -1,26 +1,26 @@
 .bb-custom-typo h1, .bb-custom-typo .h1,  .bb-custom-typo h3, .bb-custom-typo .h3,  .bb-custom-typo h5, .bb-custom-typo .h5, .bb-custom-typo .bb-course-footer, .bb-custom-typo .ld-table-list-header .ld-text, .bb-custom-typo .gamipress-achievement-points, .bb-custom-typo .vjs-modal-dialog-content,h5.member-search-results-message {
-	font-family:bree-serif, sans-serif;
+	font-family:bree-serif, sans-serif !important;
 }
 
 .bb-custom-typo h2, .bb-custom-typo .h2, .bb-custom-typo h4, .bb-custom-typo .h4, .bb-custom-typo h6, .bb-custom-typo .h6 {
-	font-family:dinosaur, sans-serif;
+	font-family:dinosaur, sans-serif !important;
 }
 
 h1.entry-title, h1.page-title {
-	font-family:bree-serif,sans-serif;
-	font-weight:300;
+	font-family:bree-serif,sans-serif !important;
+	font-weight:300 !important;
 }
 
 h2.user-nicename,h2.bs-section-title,h2.bb-title {
-	font-family:bree-serif,sans-serif;
-	font-weight:200;
-	color:#dbb778;
+	font-family:bree-serif,sans-serif !important;
+	font-weight:200 !important;
+	color:#dbb778 !important;
 }
 h2.groups-title > a, h2.screen-heading {
-	font-family:dinosaur,sans-serif;
-	text-transform:uppercase;
-	font-weight:300;
-	color:#dbb778;
+	font-family:dinosaur,sans-serif !important;
+	text-transform:uppercase !important;
+	font-weight:300 !important;
+	color:#dbb778 !important;
 }
 
 .widget-title a {
@@ -30,10 +30,10 @@ h2.groups-title > a, h2.screen-heading {
 }
 
 h2, h4, h6, #post-3 > div > h2, .entry-content > h2, .bp-widget > h4, .bp-widget > h3, .bb-courses-header > h4 {
-	font-family:dinosaur,sans-serif;
-	font-weight:300;
-	color:#dbb778;
-	text-transform:uppercase;
+	font-family:dinosaur,sans-serif !important;
+	font-weight:300 !important;
+	color:#dbb778 !important;
+	text-transform:uppercase !important;
 }
 
 

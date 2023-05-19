@@ -36,47 +36,16 @@
 							}
 
 							$options = array(
-								array(
-									'label' => "Please select the event you'd like to register",
-									'value'	=> ''
-								),
-								array(
-									'label'		=> 'Dress Up Day',
-									'value'		=> 'dress_up',
-								),
-								array(
-									'label'		=> 'Office Lunch',
-									'value'		=> 'lunch',
-								),
-								array(
-									'label'		=> 'Holiday',
-									'value'		=> 'holiday',
-								),
-								array(
-									'label'		=> 'In-Office Activity',
-									'value'		=> 'activity',
-								),
-								array(
-									'label'		=> 'Awareness Day',
-									'value'		=> 'awareness',
-								),
-								array(
-									'label'		=> 'Team Meeting',
-									'value'		=> 'meeting',
-								),
-								array(
-									'label'		=> "Amanda's Workshop",
-									'value'		=> 'workshop',
-								),
-								array(
-									'label'		=> 'Contest',
-									'value'		=> 'contest',
-								),
-								array(
-									'label'		=> 'Other',
-									'value'		=> 'other',
-								),
-
+								"Please select the event you'd like to register" => array('value' => ''),
+								'Dress Up Day' => array('value' => 'dress_up'),
+								'Office Lunch' => array('value'	=> 'lunch'),
+								'Holiday' => array('value' => 'holiday'),
+								'In-Office Activity' => array('value' => 'activity'),
+								'Awareness Day' => array('value' => 'awareness'),
+								'Team Meeting' => array('value'	=> 'meeting'),
+								"Amanda's Workshop" => array( 'value' => 'workshop' ),
+								'Contest' => array('value' => 'contest'),
+								'Other' => array('value' => 'other'),
 							);
 							cb_select_input(
 								array(
@@ -107,22 +76,6 @@
 								</li>
 							</ul>
 						</div>
-						<div class="cb-flex-container cb-flex-column-nowrap cb-flex-align-start cb-flex-justify-start">
-							<p>
-								Please provide images that indicate your participation for each selection.<br><span class="cb-info-caption">(A screenshot of an activity post, a handout from the event, etc.)</span>
-							</p>
-							<div id="cb-dropzone-container">
-								<div id='cb-dropzone'>
-									<div class="dz-default dz-message">
-										<p>
-											Drop Files to Upload
-										</p>
-										<button class="dz-button" type="button">or Click Here</button></div>
-								</div>
-							</div>
-							<div id="cb-previews-container"></div>
-							<div id="cb-media-selection"></div>
-						</div>
 					</div>
 					<?php 
 
@@ -145,6 +98,21 @@
 					?>
 
 				</form>
+			</div>
+		</div>
+	</div>
+	<div style="width: 100%; margin-top: 2rem;">
+		<div id="cb-participation-log-container">
+			<?php cb_templates_heading("My Participation Submissions"); ?>
+			<div class="" style="display:flex;flex-flow: row wrap;justify-content:center;align-items:center;gap:1rem;">
+				<div style="display:flex;justify-content:center;flex-flow:row wrap;align-items:center;gap:10px;flex: 1 1 200px;">
+					<?php 
+					cb_participation_event_type_filter(); 
+					cb_participation_nav();
+					?>
+				</div>
+				
+				<?php cb_templates_ajax_table('participation'); ?>
 			</div>
 		</div>
 	</div>

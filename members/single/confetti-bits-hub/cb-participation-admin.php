@@ -6,7 +6,7 @@ $active = '';
 
 <div class="cb-container" id="cb-participation-admin">
 	<div class="cb-module">
-		<div class="cb-participation-admin">
+		<div class="cb-participation-admin" style="overflow-x: scroll;">
 			<?php  ?>
 			<div style="width:100%;display:flex;justify-content:flex-start;flex-flow:row wrap;align-items:center;gap:10px;">
 				<?php 
@@ -104,16 +104,21 @@ $active = '';
 								)
 							);
 							?>
-							<input type="submit" id="cb_participation_admin_bulk_edit_submit" value="Apply" />
+							<input 
+								   type="submit" 
+								   class="cb-submit-input" 
+								   id="cb_participation_admin_bulk_edit_submit" 
+								   value="Apply" 
+								   />
 						</div>
 					</form>
 				</div>
-				<div class="cb-participation-pagination-container">
-					<div class="cb-participation-pagination">
-						<button class="cb-participation-pagination-button cb-participation-pagination-first" data-cb-participation-page="1" >«</button>
-						<button class="cb-participation-pagination-button cb-participation-pagination-previous" data-cb-participation-page="" >‹</button>
-						<button class="cb-participation-pagination-button cb-participation-pagination-next" data-cb-participation-page="" >›</button>
-						<button class="cb-participation-pagination-button cb-participation-pagination-last" data-cb-participation-page="" >»</button>
+				<div class="cb-participation-admin-pagination-container">
+					<div class="cb-participation-admin-pagination">
+						<button class="cb-participation-admin-pagination-button cb-participation-admin-pagination-first" data-cb-participation-page="1" >«</button>
+						<button class="cb-participation-admin-pagination-button cb-participation-admin-pagination-previous" data-cb-participation-page="" >‹</button>
+						<button class="cb-participation-admin-pagination-button cb-participation-admin-pagination-next" data-cb-participation-page="" >›</button>
+						<button class="cb-participation-admin-pagination-button cb-participation-admin-pagination-last" data-cb-participation-page="" >»</button>
 					</div>
 				</div>
 			</div>
@@ -243,14 +248,20 @@ $active = '';
 						?>
 					</form>
 				</div>
-			</div>
-			<?php if ( cb_is_user_site_admin() ) { ?>
-			<div class="cb-participation-admin-applicant-history-container">
-				<table id="cb-participation-admin-applicant-history">
+				<div id="cb-participation-admin-transaction-history-view">
+					<div id="cb-participation-admin-transaction-history-pagination">
+						<button class="cb-transactions-pagination-button cb-transactions-pagination-first" data-cb-transactions-page="1" >«</button>
+						<button class="cb-transactions-pagination-button cb-transactions-pagination-previous" data-cb-transactions-page="" >‹</button>
+						<button class="cb-transactions-pagination-button cb-transactions-pagination-next" data-cb-transactions-page="" >›</button>
+						<button class="cb-transactions-pagination-button cb-transactions-pagination-last" data-cb-transactions-page="" >»</button>
 
-				</table>
+					</div>
+					<table id="cb-participation-admin-transaction-history-table">
+
+					</table>
+				</div>
+
 			</div>
-			<?php 	} ?>
 		</div>
 	</div>
 </div>

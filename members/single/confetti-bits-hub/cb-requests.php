@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<p class="cb-counter">
 			<?php 
 
-				cb_users_request_balance_notice();	
+				cb_users_request_balance_notice();
 
 			?>
 		</p>

@@ -38,6 +38,8 @@ add_filter( 'the_content', 'cb_hub_content' );
  * 
  */
 function cb_theme_styles() {
+	
+	$directory_uri = get_stylesheet_directory_uri();
 
 	wp_enqueue_style( 
 		'cb-fonts',
@@ -48,30 +50,26 @@ function cb_theme_styles() {
 
 	wp_enqueue_style( 
 		'cb-type',
-		get_stylesheet_directory_uri().
-		'/assets/css/cb-type.css', 
+		"{$directory_uri}/assets/css/cb-type.css", 
 		TEAMCTG_THEME_VERSION 
 	);
 
 	wp_enqueue_style( 
 		'cb-hub-styles',
-		get_stylesheet_directory_uri().
-		'/assets/css/cb-hub.css', 
+		"{$directory_uri}/assets/css/cb-hub.css",
 		TEAMCTG_THEME_VERSION 
 	);
 
 	wp_enqueue_style( 
 		'cb-form-styles',
-		get_stylesheet_directory_uri().
-		'/assets/css/cb-forms.css', 
+		"{$directory_uri}/assets/css/cb-forms.css", 
 		TEAMCTG_THEME_VERSION 
 	);
 
 	if ( cb_is_confetti_bits_component() && cb_is_user_participation_admin() ) {
 		wp_enqueue_style( 
 			'cb-hub-admin-styles',
-			get_stylesheet_directory_uri().
-			'/assets/css/cb-hub-admin.css', 
+			"{$directory_uri}/assets/css/cb-hub-admin.css", 
 			TEAMCTG_THEME_VERSION 
 		);
 	}
@@ -247,3 +245,10 @@ function bb_fix_theme_option_for_custom_wp_installation( $url ) {
 	}
 	return $url;
 }
+
+function cb_temp_culture_calendar_content() {
+	if ( is_page('events') ) {
+		echo "<script src='https://events.timely.fun/embed.js' data-src='https://events.timely.fun/cp3goaa2/' data-max-height='0'  id='timely_script' class='timely-script'></script>";		
+	}
+}
+add_filter( 'the_content', 'cb_temp_culture_calendar_content' );

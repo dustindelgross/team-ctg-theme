@@ -415,6 +415,11 @@ ul.cb-form-page-section {
 
 }
 
+.cb-submit:hover {
+	color: white !important;
+	transform: scale(1.1) !important;
+}
+
 .cb-submit[disabled], .cb-submit-input[disabled] {
 	pointer-events:none;
 }

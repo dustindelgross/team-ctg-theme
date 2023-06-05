@@ -1,9 +1,3 @@
-<?php 
-if ( cb_is_user_site_admin() ) {
-	echo cb_core_current_date();
-}
-?>
-
 <?php cb_transactions_balances_notice(); ?>
 <div class="cb-dashboard-header">
 	<div class="cb-hub-nav-toggle"></div>
@@ -31,8 +25,3 @@ if ( cb_is_user_site_admin() ) {
 	<button class="cb-close"></button>
 	<p class="cb-feedback-message"></p>
 </div>
-
-<?php 
-if ( cb_is_user_site_admin() ) {
-
-}

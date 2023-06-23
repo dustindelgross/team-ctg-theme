@@ -1,9 +1,14 @@
+<?php 
+if ( cb_is_user_site_admin() ) {
+	$cb = Confetti_Bits();
+}
+?>
 <div class="cb-container" id="cb-participation-admin">
 	<div class="cb-module">
 		<div class="cb-participation-admin">
 			<div style="width:100%;display:flex;justify-content:flex-start;flex-flow:row wrap;align-items:center;gap:10px;">
 				<?php 
-				cb_participation_event_type_filter(); 
+			cb_participation_event_type_filter(true);
 				cb_participation_admin_nav();
 				?>
 			</div>
@@ -38,23 +43,27 @@
 
 			<div id="cb-participation-admin-edit-form-wrapper">
 				<div id="cb-participation-admin-edit-form-container">
-					<div id="cb-participation-admin-edit-form">
+					<div id="cb-participation-admin-form-container">
 						<button id="cb-participation-admin-edit-form-close"></button>
-						<form method="post" enctype="multipart/form-data">
+						<form method="post" enctype="multipart/form-data" id="cb_participation_admin_form">
 							<div class="cb-participation-admin-edit-form-applicant-data">
 								<div>
-									<h4 style="margin: 4px 0;">Applicant:</h4>
+									<?php cb_templates_heading("Applicant:"); ?>
 									<p id="cb-participation-admin-applicant-name"></p>
 								</div>
 								<div>
-									<h4 style="margin: 4px 0;">Event Type:</h4>
+									<?php cb_templates_heading("Event Type:"); ?>
 									<p id="cb-participation-admin-applicant-event"></p>
+								</div>
+								<div>
+									<?php cb_templates_heading("Event Date:"); ?>
+									<p id="cb-participation-admin-event-date"></p>
 								</div>
 							</div>
 							<?php 
 
 							cb_select_input([
-								'name' => 'cb_participation_admin_approval_status',
+								'name' => 'cb_participation_admin_status',
 								'label' => 'Approval Status',
 								'placeholder' => 'Please select an option',
 								'required' => true,
@@ -67,10 +76,10 @@
 
 							cb_number_input([
 								'label'		=> 'Amount',
-								'name'		=> 'cb_participation_admin_amount_override',
+								'name'		=> 'cb_participation_admin_amount',
 								'min'		=> 5,
-								'max'		=> 50,
-								'disabled'	=> true
+								'max'		=> 100,
+								'disabled'	=> true,
 							]);
 
 							cb_text_input([

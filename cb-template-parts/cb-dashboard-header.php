@@ -25,3 +25,13 @@
 	<button class="cb-close"></button>
 	<p class="cb-feedback-message"></p>
 </div>
+<div class="cb-destruct-feedback">
+	<button class="cb-close"></button>
+	<div>
+		<p class="cb-destruct-feedback-message"></p>
+		<div style="display:flex;flex-flow: row nowrap; gap: 1rem;">
+			<button class='cb-destruct-cancel'>Nevermind</button>
+			<button class='cb-destruct-confirm'>I Understand</button>
+		</div>
+	</div>
+</div>
